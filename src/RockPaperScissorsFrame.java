@@ -14,7 +14,7 @@ public class RockPaperScissorsFrame extends JFrame implements Strategy {
     ImageIcon rockIcon, paperIcon, scissorsIcon, quitIcon;
 
     JPanel statsPnl;
-    JTextField userWinFld, compWinFld, tieFld;
+    JTextField userWinFld, compWinFld, tieFld, totalFld;
     int userWins, compWins, ties = 0;
 
     // String list with rock index 0, paper index 1, scissors index 2
@@ -99,27 +99,37 @@ public class RockPaperScissorsFrame extends JFrame implements Strategy {
      */
     public void createStatsPanel(){
         statsPnl = new JPanel();
-        statsPnl.setLayout(new GridLayout(2, 3));
+        statsPnl.setLayout(new GridLayout(2, 4));
 
         JLabel lbl1 = new JLabel("Player Wins:");
         JLabel lbl2 = new JLabel("Computer Wins:");
         JLabel lbl3 = new JLabel("Ties:");
+        JLabel lbl4 = new JLabel("Total games:");
 
         userWinFld = new JTextField();
         compWinFld = new JTextField();
         tieFld = new JTextField();
+        totalFld = new JTextField();
+
+        userWinFld.setEditable(false);
+        compWinFld.setEditable(false);
+        tieFld.setEditable(false);
+        totalFld.setEditable(false);
 
         userWinFld.setPreferredSize(new Dimension(120,20));
         compWinFld.setPreferredSize(new Dimension(120,20));
         tieFld.setPreferredSize(new Dimension(120,20));
+        totalFld.setPreferredSize(new Dimension(120,20));
 
 
         statsPnl.add(lbl1);
         statsPnl.add(lbl2);
         statsPnl.add(lbl3);
+        statsPnl.add(lbl4);
         statsPnl.add(userWinFld);
         statsPnl.add(compWinFld);
         statsPnl.add(tieFld);
+        statsPnl.add(totalFld);
     }
 
     /**
@@ -128,6 +138,7 @@ public class RockPaperScissorsFrame extends JFrame implements Strategy {
     public void createOutputPanel(){
         outputPnl = new JPanel();
         outputTA = new JTextArea(15, 40);
+        outputTA.setEditable(false);
         scroller = new JScrollPane(outputTA);
 
         outputPnl.add(scroller);
@@ -179,6 +190,7 @@ public class RockPaperScissorsFrame extends JFrame implements Strategy {
             compWinFld.setText(Integer.toString(compWins));
             outputTA.append(playOptions[compPlay] + defeatOptions[compPlay] + playOptions[userPlay] + " (Computer Wins " + strategy + ")\n");
         }
+        totalFld.setText(String.valueOf(ties+compWins+userWins));
     }
 
     public ArrayList<Object> determineMove(int userPlay){
