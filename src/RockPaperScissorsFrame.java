@@ -116,6 +116,11 @@ public class RockPaperScissorsFrame extends JFrame implements Strategy {
         tieFld.setEditable(false);
         totalFld.setEditable(false);
 
+        userWinFld.setBackground(Color.WHITE);
+        compWinFld.setBackground(Color.WHITE);
+        tieFld.setBackground(Color.WHITE);
+        totalFld.setBackground(Color.WHITE);
+
         userWinFld.setPreferredSize(new Dimension(120,20));
         compWinFld.setPreferredSize(new Dimension(120,20));
         tieFld.setPreferredSize(new Dimension(120,20));
